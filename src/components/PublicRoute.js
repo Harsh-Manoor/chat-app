@@ -1,19 +1,14 @@
-import React from 'react'
-import {Route, Redirect } from 'react-router';
+import React from 'react';
+import { Redirect, Route } from 'react-router';
 
+const PublicRoute = ({ children, ...routeProps }) => {
+  const profile = false;
 
-const PublicRoute = ({childern,...routeProps}) => {
-    const profile = false;
+  if (profile) {
+    return <Redirect to="/" />;
+  }
 
-    if(profile){
-        return <Redirect to="/" />
-    }
+  return <Route {...routeProps}>{children}</Route>;
+};
 
-    return (
-        <Route {...routeProps}>
-            {childern}
-        </Route>
-    )
-}
-
-export default PublicRoute
+export default PublicRoute;
