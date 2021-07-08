@@ -18,12 +18,17 @@ const app = firebase.initializeApp(config);
 export const auth = app.auth();
 export const database = app.database();
 export const storage = app.storage();
-export const messaging = firebase.messaging.isSupported() ? app.messaging() : null;
 
-if(messaging){
-  messaging.usePublicVapidKey(BBIWk8ihln-_oHSfFrgLu6fOKbV-8M-TyduC2iHApz6iD1cbjXFWvnv5njzRos6cRPcB_Ddal_kXUEWtCXX3VLw);
+export const messaging = firebase.messaging.isSupported()
+  ? app.messaging()
+  : null;
 
-  messaging.onMessage(data =>{
+if (messaging) {
+  messaging.usePublicVapidKey(
+    'BBIWk8ihln-_oHSfFrgLu6fOKbV-8M-TyduC2iHApz6iD1cbjXFWvnv5njzRos6cRPcB_Ddal_kXUEWtCXX3VLw'
+  );
+
+  messaging.onMessage(data => {
     console.log(data);
-  })
+  });
 }
